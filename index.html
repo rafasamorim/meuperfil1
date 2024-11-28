@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Interativo</title>
+    <!-- Aqui estamos usando o Bootstrap para deixar o layout mais bonitinho e responsivo -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- O fundo é claro, mas você pode mudar para outro tema se quiser -->
+    
+    <div class="container mt-5">
+        <div class="card" id="profileCard">
+            <div class="card-body text-center">
+                <!-- Imagem do perfil. É só um placeholder (genérico), mas dá pra trocar por uma foto real -->
+                <img src="https://via.placeholder.com/150" 
+                     alt="Imagem de Perfil" 
+                     id="profileImage" 
+                     class="rounded-circle mb-3" 
+                     style="width: 150px;">
+                     
+                <!-- Aqui mostramos o nome do perfil. Ele pode ser atualizado ao clicar no botão "Alterar Nome" -->
+                <h3 id="profileName">Nome: Rafaela Da Silva de Amorim</h3>
+                
+                <!-- Idade do perfil, só como exemplo. Dá pra deixar dinâmico no futuro -->
+                <p id="profileAge">Idade: 16</p>
+
+                <!-- Essa é a lista de hobbies. Você pode adicionar mais itens com o botão "Adicionar Hobby" -->
+                <h5>Hobbies:</h5>
+                <ul id="hobbiesList" class="list-group mb-3">
+                    <li class="list-group-item">Leitura</li>
+                    <li class="list-group-item">Academia</li>
+                    <li class="list-group-item">Praia</li>
+                    <li class="list-group-item">Maquiagem</li>
+                    <li class="list-group-item">Canto</li>
+                    <li class="list-group-item">Luta</li>
+                </ul>
+
+                <!-- Botões para interagir com o perfil -->
+                 <!-- Esse botão altera seu nome -->
+                <button class="btn btn-primary me-2" onclick="alterarNome()">Alterar Nome</button>
+                <!-- Esse botão muda sua idade -->
+                <button class="btn btn-primary me-2" onclick="alterarIdade()">Alterar Idade</button>
+                <!-- Esse botão abre um prompt para você escrever um novo hobby -->
+                <button class="btn btn-success me-2" onclick="adicionarHobby()">Adicionar Hobby</button>
+                <!-- Esse muda a cor do fundo do cartão para uma cor aleatória -->
+                <button class="btn btn-warning me-2" onclick="mudarCorDeFundo()">Mudar Cor de Fundo</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Essa função muda o nome do perfil. Basicamente, ela pede um novo nome e atualiza o texto na tela.
+        function alterarNome() {
+            const novoNome = prompt("Digite o novo nome:");
+            if (novoNome) { // Aqui a gente verifica se a pessoa digitou algo mesmo
+                document.getElementById("profileName").textContent = "Nome: " + novoNome;
+            }
+        }
+
+         // Essa função muda a idade do perfil. Basicamente, ela pede uma nova idade e atualiza o texto na tela.
+        function alterarIdade() {
+            const novoIdade = prompt("Digite a nova idade:");
+            if (novoIdade) { // Aqui a gente verifica se a pessoa digitou algo mesmo
+                document.getElementById("profileAge").textContent = "Idade: " + novoIdade;
+            }
+        }
+
+
+        // Essa função adiciona um hobby à lista. É bem prática para testar como criar elementos dinâmicos.
+        function adicionarHobby() {
+            const novoHobby = prompt("Digite um novo hobby:");
+            if (novoHobby && novoHobby.trim() !== "") { // Evita adicionar hobbies vazios ou só espaços
+                const li = document.createElement("li"); // Criando um novo item de lista
+                li.textContent = novoHobby.trim(); // Tiramos os espaços extras no começo ou no fim
+                li.className = "list-group-item"; // Aplicando estilo do Bootstrap
+                document.getElementById("hobbiesList").appendChild(li); // Adicionando o item na lista
+            } else {
+                alert("O hobby não pode estar vazio!"); // Aviso caso alguém clique no botão e não digite nada
+            }
+        }
+
+        // Essa função muda a cor de fundo do cartão. É ótima pra deixar as coisas mais dinâmicas e legais.
+        function mudarCorDeFundo() {
+            const cores = ["#FF00FF", "#FF00FF", "#FF00FF", "#FF00FF"]; // Lista de cores bem suaves
+            const corAleatoria = cores[Math.floor(Math.random() * cores.length)]; // Escolhe uma cor aleatória
+            document.getElementById("profileCard").style.backgroundColor = corAleatoria; // Aplica a cor escolhida
+        }
+    </script>
+
+    <!-- Adicionando o JavaScript do Bootstrap, caso precise de alguma funcionalidade extra -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
